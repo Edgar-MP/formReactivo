@@ -1,4 +1,4 @@
-<div class="container-fluid mt-4">
+<div class="container mt-4">
     <h4>Formularios <small>data</small></h4>
     <hr>
     <form autocomplete="off" [formGroup]="form" (ngSubmit)="guardar()">
@@ -40,23 +40,87 @@
             </div>
         </div>
 
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Usuario</label>
+            <div class="col">
+
+                <input class="form-control" type="text" placeholder="Nombre de Usuario" formControlName="usuario"
+                    [class.is-invalid]="usuarioNoValido">
+                <small *ngIf="usuarioNoValido" class="text-danger">
+                    Ese nombre de usuario ya existe
+                </small>
+
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Contraseña</label>
+            <div class="row col-md-8 p-0 m-0">
+                <div class="col">
+                    <input type="password" class="form-control" placeholder="Contraseña" formControlName="pass1"
+                        [class.is-invalid]="pass1NoValida">
+                    <small *ngIf="pass1NoValida" class="text-danger">
+                        Ingrese una contraseña valida
+                    </small>
+                </div>
+                <div class="col">
+                    <input type="password" class="form-control" placeholder="Repetir Contraseña" formControlName="pass2"
+                        [class.is-invalid]="pass2NoValida">
+                    <small *ngIf="pass2NoValida" class="text-danger">
+                        Las contraseñas deben coincidir
+                    </small>
+                </div>
+            </div>
+        </div>
+
         <div class="form-group row" formGroupName="direccion">
             <label class="col-2 col-form-label">Dirección</label>
             <div class="row col-md-8 p-0 m-0">
                 <div class="col">
                     <input type="text" class="form-control" placeholder="Población" formControlName="poblacion"
-                    [class.is-invalid]="poblacionNoValida">
+                        [class.is-invalid]="poblacionNoValida">
                     <small *ngIf="poblacionNoValida" class="text-danger">
                         Ingrese una poblacion
                     </small>
                 </div>
                 <div class="col">
                     <input type="text" class="form-control" placeholder="Provincia" formControlName="provincia"
-                    [class.is-invalid]="provinciaNoValida">
+                        [class.is-invalid]="provinciaNoValida">
                     <small *ngIf="provinciaNoValida" class="text-danger">
                         Ingrese una provincia
                     </small>
                 </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <table class="table">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>ID</th>
+                            <th>Pasatiempo</th>
+                            <th>Borrar</th>
+                        </tr>
+                    </thead>
+                    <tbody formArrayName="pasatiempos">
+                        <tr *ngFor="let control of pasatiempos.controls; let i = index">
+                            <td>{{ i + 1 }}</td>
+                            <td>
+                                <input type="text" class="form-control" [formControlName]="i">
+                            </td>
+                            <td>
+                                <button class="btn btn-danger" style="cursor: pointer" (click)="borrarPasatiempo(i)">
+                                    Borrar
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button class="btn btn-primary mt-3 mb-3 btn-block" type="button" style="cursor: pointer"
+                    (click)="agregarPasatiempo()">
+                    + Agregar
+                </button>
             </div>
         </div>
 

@@ -5,11 +5,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ReactiveComponent } from './components/reactive/reactive.component';
+import { ValidadoresComponent } from './services/validadores/validadores.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ReactiveComponent
+    ReactiveComponent,
+    ValidadoresComponent
   ],
   imports: [
     BrowserModule,
@@ -17,7 +19,9 @@ import { ReactiveComponent } from './components/reactive/reactive.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    ValidadoresComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
