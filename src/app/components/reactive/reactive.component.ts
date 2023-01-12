@@ -18,7 +18,7 @@ export class ReactiveComponent {
 
   crearListeners() {
     this.form.valueChanges.subscribe( valor => {
-      // console.log(valor);
+      console.log(valor);
     })
 
     this.form.statusChanges.subscribe(status => console.log(status))
